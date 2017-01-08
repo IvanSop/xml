@@ -1,0 +1,42 @@
+<!doctype html>
+<!--suppress HtmlUnknownTarget -->
+<html ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ticketing Service</title>
+  <!-- styles -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+</head>
+
+<div class="container">
+    <div ng-view></div>
+</div>
+
+<!-- scripts -->
+<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
+
+<!--for charts-->
+<!-- THIS IS CHART 1.0.x<script src="bower_components/Chart.js/Chart.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.2/Chart.js"></script>
+<!--THIS IS FOR CHART 1.0.x<script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>-->
+<script src="bower_components/angular-chart2.js/angular-chart.js"></script>
+<!-- <script src="bower_components/ui-bootstrap/ui-bootstrap-tpls-0.12.0.js"></script> -->
+<script src="scripts/main.js"></script>
+<script src="scripts/auth_service.js"></script>
+<script src="scripts/controllers/loginController.js"></script>
+<script src="scripts/controllers/logoutController.js"></script>
+<script src="scripts/controllers/registerController.js"></script>
+<script src="scripts/controllers/homepageController.js"></script>
+
+</body>
+</html>

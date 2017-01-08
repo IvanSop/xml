@@ -1,0 +1,233 @@
+body {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+  padding: 50px;  
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;  
+  background: rgba(144,152,240,1);
+  background: -moz-linear-gradient(left, rgba(144,152,240,1) 0%, rgba(117,185,245,0.77) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(144,152,240,1)), color-stop(100%, rgba(117,185,245,0.77)));
+  background: -webkit-linear-gradient(left, rgba(144,152,240,1) 0%, rgba(117,185,245,0.77) 100%);
+  background: -o-linear-gradient(left, rgba(144,152,240,1) 0%, rgba(117,185,245,0.77) 100%);
+  background: -ms-linear-gradient(left, rgba(144,152,240,1) 0%, rgba(117,185,245,0.77) 100%);
+  background: linear-gradient(to right, rgba(144,152,240,1) 0%, rgba(117,185,245,0.77) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9098f0', endColorstr='#75b9f5', GradientType=1 );
+}
+
+a {
+  color: chocolate;
+}
+
+h1 {
+  font-family: 'Oswald', sans-serif;
+  font-style: normal;
+  font-size: 50px;
+  color: #22375A;
+}
+
+h2 {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 35px;
+  color: #32476A;
+}
+
+a.projects-btn, a.tasks-btn {
+    width: 20%;
+}
+
+div.task-widget {
+    float: left;
+    margin-right: 2%;
+    width: 48%;
+    height: 50%;
+    border: 2px solid rgba(34, 55, 90, .5);
+}
+
+div[name="login-register-form"] {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width: 25%;
+    height: 60%;
+    margin-top: -15%;
+    margin-left: -15%;
+}
+
+input[name='project_name'] {
+    display: inline-block;
+    vertical-align: baseline;
+    width: 20%;
+    margin-right: 15px;
+}
+
+button[id='create-project-btn'] {
+    float: none;
+}
+
+label {
+    display: inline-block;
+    vertical-align: baseline;
+    text-align: right;
+    clear: both;
+    margin-right: 15px;
+}
+
+.project-task-item {
+    cursor: pointer;
+    border: 2px, solid, #555;
+    background-color: white;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: 20pt;
+    text-align: center;
+    width: 50%;
+}
+
+li.myselected {
+    background-color: lightgray;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+   cursor: pointer; 
+}
+
+a[id='logout-btn'] {
+	float: right;
+}
+
+form[name="project-task-details"] {
+    padding: 5%;
+    border: 2px solid #555;
+    width: 70%;
+    align-content: center;
+}
+
+form[name="project-task-details"] label {
+    width: 25%;
+    float: left;
+    text-align: right;
+}
+
+form[name="project-task-details"] input[name="delete-project-task"] {
+    float: right;
+}
+
+li.comment-body {
+    background-color: rgba(57, 70, 225, 0.2);
+    width: 45%;
+    padding-left: 1%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    border: 1px black solid;
+    margin: 2%;
+}
+
+p.comment-text {
+    color: #f7f7f7;
+}
+
+p.comment-author-date {
+    color: #555;
+    font-size: 10pt;
+    font-style: italic;
+}
+
+canvas.chart {
+    background-color: rgb(230, 230, 230);
+    width: 100%;
+}
+
+.form-signin{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signin input[type="password"].nomargin {
+	margin-bottom: 0px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.account-wall {
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.signup-wall {
+	margin-top: 20px;
+    padding: 20px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);	
+}
+
+.login-title {
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+
+.profile-img {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.new-account {
+    display: block;
+    margin-top: 10px;
+}
+
+h1.error-message {
+    color: red;
+}
