@@ -13,12 +13,33 @@ angular.module('myApp').factory('AuthService',
       logout: logout,
       register: register,
       getErrMsg: getErrMsg,
-      isAdmin: isAdmin,
-      getAllUsers: getAllUsers
+      isCitizen: isCitizen,
+      isAlderman: isAlderman,
+      isPresident: isPresident,
+      getAllUsers: getAllUsers,
+      getCurrentUserUsername: getCurrentUserUsername,
     });
 
-    function isAdmin() {
+    function getCurrentUserUsername() {
+      return user.username;
+    }
+
+    function isCitizen() {
+      if (user.type == 0) {
+        return true;
+      }
+      return false;
+    }
+
+    function isAlderman() {
       if (user.type == 1) {
+        return true;
+      }
+      return false;
+    }
+
+    function isPresident() {
+      if (user.type == 2) {
         return true;
       }
       return false;

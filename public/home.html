@@ -1,2 +1,47 @@
 <div ng-include="'logout.html'"/>
-<h1 ng-controller="homepageController">Dobrodošli, {{username}}</h1>
+<div ng-controller="homepageController as hc">
+    <h1>Dobrodošli, {{username}}</h1>
+
+    <br>
+
+    <a ng-click="hc.searchToggled = !hc.searchToggled" class="btn btn-default search-btn">Pretraga</a>
+    <a ng-if="isAlderman" href="#new_act" class="btn btn-default search-btn">Novi akt</a>
+    <a ng-if="isPresident" href="#session" class="btn btn-primary search-btn">Sednica</a>
+
+    <br>
+    <br>
+    <br>
+
+    <form class="form" ng-show="hc.searchToggled" name="search-form" id="taskForm">
+        <div class="form-group">
+            <label for="searchBar">Pretraga naziva ili sadržaja:</label>
+            <input class="form-control" type="text" ng-model="s.searchText" id="searchBar">
+        </div>
+        <br>
+        <!-- <input type="submit" id="submit" class="btn btn-default" value="Traži"> -->
+    </form>
+
+    <br>    
+    <br>
+    <br>
+    <br>
+
+    <div class="acts-widget" ng-controller="homepageController">
+        <h2>Akta u proceduri:</h2>
+        
+        <ul>
+            <li class="act-item" ng-repeat="act in allActs | filter: {status: 'inProgress', heading: s.searchText, searchFilter}">
+                <a href="#act" ng-click="setCurrentAct(act)">{{act.heading}}</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="acts-widget" ng-controller="homepageController">
+        <h2>Usvojena akta:</h2>
+        <ul>
+            <li class="act-item" ng-repeat="act in allActs | filter: {status: 'accepted', heading: s.searchText, searchFilter}">
+                <a href="#act" ng-click="setCurrentAct(act)">{{act.heading}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

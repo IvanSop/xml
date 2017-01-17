@@ -4,6 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var jsonToXml = require('json2xml');
 
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
@@ -13,7 +14,8 @@ mongoose.connect(dbConfig.url);
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'ejs');
 
 app.use(favicon());

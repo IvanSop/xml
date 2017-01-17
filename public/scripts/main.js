@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'chart.js']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 myApp.config(function ($routeProvider) {
     $routeProvider
@@ -20,9 +20,29 @@ myApp.config(function ($routeProvider) {
             controller: 'registerController',
             access: {restricted: false, reverseRestricted: true}
         })
+        .when('/new_act', {
+            templateUrl: 'new_act.html',
+            access: {restricted: true}
+        })
+        .when('/act', {
+            templateUrl: 'act.html',
+            access: {restricted: true}
+        })
+        .when('/session', {
+            templateUrl: 'session.html',
+            access: {restricted: true}
+        })
         .otherwise({
             redirectTo: '/'
         });
+});
+
+myApp.filter('searchContent', function () {
+    return function (item) {        
+        if (item.includes("2")) {
+            return item;
+        }
+    };
 });
 
 myApp.run(function ($rootScope, $location, $route, AuthService) {
@@ -30,6 +50,7 @@ myApp.run(function ($rootScope, $location, $route, AuthService) {
         function (event, next, current) {
             AuthService.getUserStatus()
                 .then(function () {
+                    //TypeError: Cannot read property 'restricted' of undefined
                     if (next.access.restricted && !AuthService.isLoggedIn()) {
                         $location.path('/login');
                         $route.reload();

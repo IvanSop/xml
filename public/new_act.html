@@ -1,0 +1,43 @@
+<div ng-include="'logout.html'"/>
+<a href="#/" class="btn btn-default">Početna</a>
+<h2>Novi akt:</h2>
+<form ng-controller="actController" class="form" name="new-act-form" if="act-form" ng-submit="submitAct()">
+    <div class="form-group">
+        <label for="act-heading">Naslov</label>
+        <input id="act-heading" class="form-control" type="text" ng-model="act.heading" required>
+    </div>
+
+    <fieldset ng-repeat="node in act.nodes track by $index">
+        <h3 style="display: inline-block">Tačka {{$index + 1}}.</h3>
+        <input class="form-control" type="text" ng-model="node.heading" required>
+        <button class="btn btn-danger" ng-click="deleteNode($index)">Obriši tačku</button>
+
+        <fieldset ng-repeat="clause in node.clauses">
+            </br>
+            <label>Član {{$index + 1}}.</label>
+            <textarea name="clause-txt-area" ng-model="clause.text" class="form-control" required></textarea>
+            <button class="btn btn-danger" ng-click="deleteClause($parent.$index, $index)">Obriši član</button>
+        </fieldset>
+
+        </br>
+        <button class="btn btn-warning" ng-click="newClause($index)">Novi član</button>        
+
+    </fieldset>
+
+    </br>
+
+    <button class="btn btn-warning" ng-click="newNode()">Nova tačka</button>
+
+    </br>
+    </br>
+
+    <button style="display: inline-block"class="btn btn-success" ng-click="previewActAsXml(act); ac.xmlPrev = !ac.xmlPrev;">Pregledaj akt kao XML</button>
+    <button style="display: inline-block"class="btn btn-success" ng-click="previewActAsJSON(act); ac.xmlPrev = !ac.xmlPrev;">Pregledaj akt kao JSON</button>
+    <button class="btn btn-primary" type="submit">Predloži akt</button>
+
+    </br>
+    </br>
+
+    <textarea name="act-txt-area" ng-if="ac.xmlPrev" class="form-control" ng-model="xmlAct"></textarea>
+    
+</form>

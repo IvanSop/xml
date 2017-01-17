@@ -32,11 +32,17 @@ h2 {
   color: #32476A;
 }
 
-a.projects-btn, a.tasks-btn {
+h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 25px;
+  color: #32476A;
+}
+
+a.search-btn, a.newact-btn {
     width: 20%;
 }
 
-div.task-widget {
+div.acts-widget {
     float: left;
     margin-right: 2%;
     width: 48%;
@@ -54,26 +60,16 @@ div[name="login-register-form"] {
     margin-left: -15%;
 }
 
-input[name='project_name'] {
-    display: inline-block;
-    vertical-align: baseline;
-    width: 20%;
-    margin-right: 15px;
-}
-
-button[id='create-project-btn'] {
-    float: none;
-}
-
 label {
     display: inline-block;
     vertical-align: baseline;
     text-align: right;
     clear: both;
     margin-right: 15px;
+    cursor: text;
 }
 
-.project-task-item {
+.act-item {
     cursor: pointer;
     border: 2px, solid, #555;
     background-color: white;
@@ -100,21 +96,27 @@ a[id='logout-btn'] {
 	float: right;
 }
 
-form[name="project-task-details"] {
-    padding: 5%;
+form[name="search-form"] {
+    padding: 1%;
     border: 2px solid #555;
     width: 70%;
-    align-content: center;
 }
 
-form[name="project-task-details"] label {
-    width: 25%;
+form[name="search-form"] label {    
     float: left;
     text-align: right;
 }
 
-form[name="project-task-details"] input[name="delete-project-task"] {
-    float: right;
+textarea[name="clause-txt-area"] {
+    height: 200px;
+    max-height: 200px;
+    max-width: 100%;
+}
+
+textarea[name="act-txt-area"] {
+    height: 800px;
+    max-height: 800px;
+    max-width: 100%;
 }
 
 li.comment-body {
@@ -125,16 +127,6 @@ li.comment-body {
     padding-top: 1%;
     border: 1px black solid;
     margin: 2%;
-}
-
-p.comment-text {
-    color: #f7f7f7;
-}
-
-p.comment-author-date {
-    color: #555;
-    font-size: 10pt;
-    font-style: italic;
 }
 
 canvas.chart {

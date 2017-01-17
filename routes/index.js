@@ -4,6 +4,7 @@ var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 var path = require('path');
 var UserHandler = require('../db_handlers/user_handler');
+var json2xml = require('json2xml');
 
 function getDateTime() {
 
@@ -43,21 +44,11 @@ var isAuthenticated = function (req, res, next) {
     });
 }
 
-var isAdmin = function (req, res, next) {
-    if (req.user.type == 1) {
-        return next();
-    }
-    res.status(403).json({
-        err: "Forbidden!!"
-    });
-}
-
 // strips everything except username and type from user (dont want to send hash to client)
 var stripUser = function (user) {
     var strippedUser = {};
     strippedUser.username = user.username;
     strippedUser.type = user.type;
-    strippedUser.projects = user.projects;
     return strippedUser;
 }
 
@@ -160,6 +151,16 @@ module.exports = function (passport) {
         res.status(200).json({
             status: stripUser(req.user)
         });
+    });
+
+    router.post ('/previewActAsXml', function (req, res) {
+        var xmlAct = json2xml(JSON.parse(req.body.data));
+        res.send(xmlAct);
+    });
+
+    router.post('/submitAct', isAuthenticated, function (req, res) {
+        var act = JSON.parse(req.body.data);
+        res.send(act);
     });
 
     return router;
