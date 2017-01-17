@@ -14,7 +14,11 @@ angular.module('myApp').controller('homepageController',
                 ActService.currentAct = heading;
             }
 
-            $scope.allActs = ActService.getAllActs();
+            ActService.getAllActs()
+            .then((data) => {
+                $scope.allActs = data;
+                console.log(data);
+            });
 
             $scope.getCurrentUsername = function () {
 

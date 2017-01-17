@@ -14,5 +14,7 @@ var Act = new mongoose.Schema({
     date: String,
     status: String,
     amendments: [{type: mongoose.Schema.Types.ObjectId, ref:'Amendment'}],
-    author: {type: mongoose.Schema.Types.ObjectId, ref:'User'}
+    author: String//{type: mongoose.Schema.Types.ObjectId, ref:'User'}
 });
+
+module.exports = mongoose.model('Act', Act);

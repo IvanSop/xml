@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var Act = require('../models/act')
+var Amendment = require('../models/amendment')
 var bCrypt = require('bcrypt-nodejs');
 var path = require('path');
 var UserHandler = require('../db_handlers/user_handler');
@@ -158,10 +160,59 @@ module.exports = function (passport) {
         res.send(xmlAct);
     });
 
-    router.post('/submitAct', isAuthenticated, function (req, res) {
+    router.post('/submitAct', isAuthenticated, (req, res) => {
         var act = JSON.parse(req.body.data);
-        res.send(act);
+
+        console.log("From client: _______");
+        console.log(act);
+
+        var mAct = new Act();
+        mAct.heading = act.heading;
+        mAct.nodes = act.nodes;
+        mAct.date = act.date;
+        mAct.status = act.status;
+        act.amendments.filter(amendment => {
+            //mAct.amendments.push(amendment);
+            mAmend = new Amendment();
+            mAmend.parent = 'temp';
+            mAmend.text = amendment.text;
+            mAmend.author = amendment.author;
+            mAct.amendments.push(mAmend);
+            return true;
+        })
+        mAct.author = act.author;
+
+        console.log(mAct);
+        mAct.save((err, data) => {
+            if (err) {
+                console.error("error: ", err);
+                return;
+            }
+            console.log("success");
+            res.send({"msg": "ok"});
+        })
     });
+
+
+    router.get('/getAllActs', (req, res) => {
+        console.log('getting all acts ..')
+        Act.find({}, (err, acts) => {
+            if (err) {
+                console.error('error: ', err);
+                return;
+            }
+            console.log('Returning :_____');
+            console.log(acts);
+            res.send({'data': acts});    
+        })
+    })
+
+
+
+
+
+
+
 
     return router;
 }

@@ -155,8 +155,7 @@ angular.module('myApp').factory('ActService',
     });
 
     function getAllActs() {        
-        /*
-        var promise = $http.post("/getAllActs")
+        var promise = $http.get("/getAllActs")
             .then(function (response) {
                 allActsList = response.data.data
                 return response.data.data;
@@ -164,8 +163,6 @@ angular.module('myApp').factory('ActService',
                 console.log("get all acts error");
             })
         return promise;
-        */        
-        return acts;
     }
 
     function previewActAsXml(jsonAct) {

@@ -26,7 +26,7 @@
     <br>
     <br>
 
-    <div class="acts-widget" ng-controller="homepageController">
+    <div class="acts-widget">
         <h2>Akta u proceduri:</h2>
         
         <ul>
@@ -36,7 +36,7 @@
         </ul>
     </div>
 
-    <div class="acts-widget" ng-controller="homepageController">
+    <div class="acts-widget">
         <h2>Usvojena akta:</h2>
         <ul>
             <li class="act-item" ng-repeat="act in allActs | filter: {status: 'accepted', heading: s.searchText, searchFilter}">

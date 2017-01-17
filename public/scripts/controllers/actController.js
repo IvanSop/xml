@@ -18,12 +18,7 @@ angular.module('myApp').controller('actController',
                 ],
                 date: '',
                 status: 'none',
-                amendments: [
-                    {
-                        text: '',
-                        author: ''
-                    }
-                ],
+                amendments: [],
                 author: AuthService.getCurrentUserUsername()
             };
 
