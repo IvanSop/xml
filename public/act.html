@@ -4,7 +4,7 @@
 <br>
 <br>
 
-<div ng-controller="actController">
+<div ng-controller="actController as ac">
     <div ng-if="currentAct.author == username && currentAct.status == 'inProgress'">
         <button  class="btn btn-danger" ng-click="confirmActDeletion()">Povući predloženi akt</button>
         <br>
@@ -29,24 +29,24 @@
 
     <br>
     <br>
-    <div ng-if="currentAct.amendments.length !=0" name="amendments">
+    <div ng-if="currentAct.amendments.length != 0" name="amendments">
         <h1>Amandmani:</h1>
         <br>
-        <div style="border: 2px solid #555; margin-bottom: 2%;" ng-repeat="amendment in currentAct.amendments">            
+        <div style="border: 2px solid #555; margin-bottom: 2%;" ng-repeat="amendment in ac.allAmendments | filter: {parent: currentAct._id}">            
             <p name="clause-text">{{amendment.text}}</p>            
             <label>Amandman predložio: {{amendment.author}}</label>
             <br>
-            <button ng-if="amendment.author == username" class="btn btn-danger" ng-click="removeAmendment(currentAct)">Povući predloženi amandman</button>  
+            <button ng-if="amendment.author == username" class="btn btn-danger" ng-click="confirmAmendmentDeletion(amendment._id)">Povući predloženi amandman</button>  
         </div>
         <br>
     </div>
 
-    <button ng-if="!hc.amend && currentAct.status == 'inProgress' && isAlderman" class="btn btn-success" ng-click="hc.amend = !hc.amend;">Predložiti amandman</button>
+    <button ng-if="currentAct.status == 'inProgress' && isAlderman" class="btn btn-success" ng-click="ac.showAmendmentForm()">Predložiti amandman</button>
 
-    <div ng-if="hc.amend">
-        <textarea name="clause-txt-area" ng-model="amendment.text" class="form-control"></textarea>
-        <button class="btn btn-primary" ng-click="hc.amend = !hc.amend; submitAmendment(amendment.text)">Predloži</button>
-    </div>
+    <form name="amendForm" class="form" ng-show="ac.amendmentFormVisible" ng-submit="submitAmendment(amendment.text)">        
+        <textarea name="clause-txt-area" ng-model="amendment.text" class="form-control" required></textarea>
+        <button type="submit" class="btn btn-primary">Predloži</button>
+    </form>
 
      </br>
     </br>

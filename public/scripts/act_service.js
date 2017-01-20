@@ -2,156 +2,17 @@ angular.module('myApp').factory('ActService',
   ['$q', '$timeout', '$http',
   function ($q, $timeout, $http) {
 
-    var acts = [{
-        heading: 'Akt o nečemu 1',
-        nodes: [                    
-            {
-                heading: 'UREDBA O NEČEMU ZA NEŠTO',
-                clauses: [
-                    {
-                        text: 'Neki tekst, neki tekst, fjkel fjsj nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    }
-                ]
-            },
-            {
-                heading: 'PRAVILA ZA NEŠTO JFEOJFE NFENFI NIFUENI FNIFENIFENMN',
-                clauses: [
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    }
-                ]
-            }
-        ],
-        date: '16/01/2017 14:30',
-        status: 'inProgress',
-        amendments: [
-            {
-                text: 'Prvi amandman KJALFJKNFKJYNFKJYSEBUEZFUEF',
-                author: 'Odbornik 2'
-            },
-            {
-                text: 'Drugi amandman KJALFJKNFKJYNFKJYSEBUEZFUEF',
-                author: 'Odbornik 1'
-            }
-        ],
-        author: 'Odbornik 1'
-    },
-    {
-        heading: 'Akt o nečemu 2',
-        nodes: [                    
-            {
-                heading: 'UREDBA O NEČEMU ZA NEŠTO',
-                clauses: [
-                    {
-                        text: 'Neki tekst, neki tekst, fjkel fjsj nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    }
-                ]
-            },
-            {
-                heading: 'PRAVILA ZA NEŠTO JFEOJFE NFENFI NIFUENI FNIFENIFENMN',
-                clauses: [
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    }
-                ]
-            }
-        ],
-        date: '16/01/2017 14:30',
-        status: 'inProgress',
-        amendments: [],
-        author: 'Odbornik 1'
-    },
-    {
-        heading: 'Akt o nečemu 3',
-        nodes: [                    
-            {
-                heading: 'UREDBA O NEČEMU ZA NEŠTO',
-                clauses: [
-                    {
-                        text: 'Neki tekst, neki tekst, fjkel fjsj nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    }
-                ]
-            },
-            {
-                heading: 'PRAVILA ZA NEŠTO JFEOJFE NFENFI NIFUENI FNIFENIFENMN',
-                clauses: [
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    }
-                ]
-            }
-        ],
-        date: '16/01/2017 14:30',
-        status: 'inProgress',
-        amendments: [],
-        author: 'Odbornik 2'
-    },
-    {
-        heading: 'Akt o nečemu 4',
-        nodes: [                    
-            {
-                heading: 'UREDBA O NEČEMU ZA NEŠTO',
-                clauses: [
-                    {
-                        text: 'Neki tekst, neki tekst, fjkel fjsj nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    }
-                ]
-            },
-            {
-                heading: 'PRAVILA ZA NEŠTO JFEOJFE NFENFI NIFUENI FNIFENIFENMN',
-                clauses: [
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    },
-                    {
-                        text: 'nnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbunnfnu egjgejoj gekngnn rn uivn rngknkng ejk gjd fj jjfoeijobnbu'
-                    }
-                ]
-            }
-        ],
-        date: '16/01/2017 14:30',
-        status: 'accepted',
-        amendments: [],
-        author: 'Odbornik 2'
-    }];
+    var allAmendmentsList = [];
 
     return ({        
+      getAllAmendmentsList: getAllAmendmentsList,
+      getAllAmendments: getAllAmendments,
       getAllActs: getAllActs,
       previewActAsXml: previewActAsXml,
-      submitAct: submitAct
+      submitAct: submitAct,
+      deleteAct: deleteAct,
+      submitAmendment: submitAmendment,
+      deleteAmendment: deleteAmendment
     });
 
     function getAllActs() {        
@@ -187,10 +48,48 @@ angular.module('myApp').factory('ActService',
 
     function deleteAct(act) {
         var promise = $http.post('/deleteAct', {data: act})
-            .then(function (response) {   
+            .then(function (response) {
                 console.log(response.data);
             }, function (response) {
                 console.log('error submitting act', response.data);
+            });
+        return promise;
+    }
+
+    function submitAmendment(amendment) {
+        var promise = $http.post('/submitAmendment', {data: amendment})
+            .then(function (response) {                
+                allAmendmentsList.push(response.data.data);
+                return response.data.data;
+            }, function (response) {
+                console.log('error submitting amendment', response.data);
+            });
+        return promise;
+    }
+
+    function getAllAmendments(){
+        var promise = $http.get("/getAllAmendments")
+            .then(function (response) {
+                allAmendmentsList = response.data.data;
+                return response.data.data;
+            }, function (response) {
+                console.log("get all amendments error");
+            })
+        return promise;
+    }
+
+    function getAllAmendmentsList() {
+        return allAmendmentsList;
+    }
+
+    function deleteAmendment(id, parent) {
+        console.log('id: ', id);
+        console.log('parent', parent);
+        var promise = $http.post('/deleteAmendment', {id: id, parent: parent})
+            .then(function (response) {
+                return response.data.data;
+            }, function (response) {
+                console.log('error deleting act', response.data);
             });
         return promise;
     }

@@ -10,29 +10,29 @@
     <fieldset ng-repeat="node in act.nodes track by $index">
         <h3 style="display: inline-block">Tačka {{$index + 1}}.</h3>
         <input class="form-control" type="text" ng-model="node.heading" required>
-        <button class="btn btn-danger" ng-click="deleteNode($index)">Obriši tačku</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteNode($index)">Obriši tačku</button>
 
         <fieldset ng-repeat="clause in node.clauses">
             </br>
             <label>Član {{$index + 1}}.</label>
             <textarea name="clause-txt-area" ng-model="clause.text" class="form-control" required></textarea>
-            <button class="btn btn-danger" ng-click="deleteClause($parent.$index, $index)">Obriši član</button>
+            <button type="button" class="btn btn-danger" ng-click="deleteClause($parent.$index, $index)">Obriši član</button>
         </fieldset>
 
         </br>
-        <button class="btn btn-warning" ng-click="newClause($index)">Novi član</button>        
+        <button type="button" class="btn btn-warning" ng-click="newClause($index)">Novi član</button>        
 
     </fieldset>
 
     </br>
 
-    <button class="btn btn-warning" ng-click="newNode()">Nova tačka</button>
+    <button type="button" class="btn btn-warning" ng-click="newNode()">Nova tačka</button>
 
     </br>
     </br>
 
-    <button style="display: inline-block"class="btn btn-success" ng-click="previewActAsXml(act); ac.xmlPrev = !ac.xmlPrev;">Pregledaj akt kao XML</button>
-    <button style="display: inline-block"class="btn btn-success" ng-click="previewActAsJSON(act); ac.xmlPrev = !ac.xmlPrev;">Pregledaj akt kao JSON</button>
+    <button type="button" style="display: inline-block"class="btn btn-success" ng-click="previewActAsXml(act); ac.xmlPrev = !ac.xmlPrev;">Pregledaj akt kao XML</button>
+    <button type="button" style="display: inline-block"class="btn btn-success" ng-click="previewActAsJSON(act); ac.xmlPrev = !ac.xmlPrev;">Pregledaj akt kao JSON</button>
     <button class="btn btn-primary" type="submit">Predloži akt</button>
 
     </br>

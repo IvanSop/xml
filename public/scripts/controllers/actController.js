@@ -4,6 +4,19 @@ angular.module('myApp').controller('actController',
 
             var self = this;
 
+            self.init = function () {
+                
+                self.allAmendments = [];
+
+                ActService.getAllAmendments()
+                    .then(function (response) {
+                        self.allAmendments = ActService.getAllAmendmentsList();                        
+                    })
+                
+
+            }
+            self.init();
+
             $scope.act = {
                 heading: '',
                 nodes: [                    
@@ -64,11 +77,27 @@ angular.module('myApp').controller('actController',
                     });
             };
 
-            $scope.submitAmendment = function(amendment) {
-                console.log(amendment);
-                $scope.act = ActService.currentAct;
-                $scope.act.amendments.push({text: amendment, author: AuthService.getCurrentUserUsername()});
-                
+            self.amendmentFormVisible = false;
+
+            self.showAmendmentForm = function () {
+                self.amendmentFormVisible = !self.amendmentFormVisible;
+            }
+
+            $scope.submitAmendment = function(amendment) {    
+                self.showAmendmentForm();
+                //console.log(ActService.currentAct._id);
+                $scope.amendment.text = '';
+                var amend = {
+                    parent: ActService.currentAct._id,
+                    text: amendment,
+                    author: AuthService.getCurrentUserUsername()
+                }
+                ActService.submitAmendment(angular.toJson(amend))
+                    .then(function(response) {
+                        console.log('response', response);
+                        ActService.currentAct.amendments.push(response._id);                        
+                        //self.allAmendments.push(amend);
+                    });
             };
 
             $scope.previewActAsXml = function(act) {
@@ -89,24 +118,32 @@ angular.module('myApp').controller('actController',
                 }
             };
 
-            $scope.confirmAmendmentDeletion = function () {
+            self.deleteAct = function() {
+                ActService.deleteAct(angular.toJson(ActService.currentAct))
+                    .then(function(response) {
+                        $location.path("/");
+                    });
+            };
+
+            $scope.confirmAmendmentDeletion = function (id) {
+                self.amendmentId = id;         
                 if (confirm('Da li ste sigurni da želite da povučete predlog amandmana?')) {
                     self.deleteAmendment();
                 } else {
                 }
             };
 
-            self.deleteAct = function() {
-                ActService.deleteAct(angular.toJson($scope.act))
-                    .then(function(response) {
-
-                    })
-            };
-
             self.deleteAmendment = function() {
-                ActService.deleteAmendment(angular.toJson($scope.act))
+                ActService.deleteAmendment(self.amendmentId, ActService.currentAct._id)
                     .then(function(response) {
-
+                        console.log('ctrl', response);
+                        console.log('all', self.allAmendments);
+                        for (var i = 0; i < self.allAmendments.length; i++) {
+                            if (self.allAmendments[i]._id == response._id) {
+                                self.allAmendments.splice(i, 1);
+                                break;
+                            }
+                        }
                     })
             };
 

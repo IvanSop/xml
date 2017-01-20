@@ -84,8 +84,6 @@ module.exports = function (passport) {
                         err: 'Could not log in user'
                     });
                 }
-                console.log("Stripped user");
-                console.log(stripUser(user));
                 res.status(200).json({
                     status: stripUser(user)
                 });
@@ -193,26 +191,92 @@ module.exports = function (passport) {
         })
     });
 
+    router.post('/deleteAct', isAuthenticated, (req, res) => {
+        console.log('back');
+        var act = JSON.parse(req.body.data);
+        
+        for (amend in act.amendments) {
+            Amendment.findOneAndRemove({_id: act.amendments[amend]}, (err, data) => {});
+        }
+
+        Act.findOneAndRemove({_id: act._id}, (err, data) => {
+            res.status(200).json({
+                            data: data
+            });
+        });
+    });
 
     router.get('/getAllActs', (req, res) => {
-        console.log('getting all acts ..')
         Act.find({}, (err, acts) => {
             if (err) {
                 console.error('error: ', err);
                 return;
             }
-            console.log('Returning :_____');
-            console.log(acts);
             res.send({'data': acts});    
-        })
-    })
+        });
+    });
 
+    router.post('/submitAmendment', isAuthenticated, (req, res) => {
+        var amendment = JSON.parse(req.body.data);
+        var mAmend = new Amendment();
+        mAmend.parent = amendment.parent;
+        mAmend.text = amendment.text;
+        mAmend.author = amendment.author;
+        mAmend.save((err, data) => {
+                        Act.findOneAndUpdate(
+                        {
+                            _id: mAmend.parent
+                        },
+                        {
+                            $push: {
+                                amendments: mAmend
+                                }
+                        }, (err, d) => {
+                                res.status(200).json({                        
+                                    data: data
+                                });
+                            });
+                });
 
+        
+    });
 
+    router.get('/getAllAmendments', (req, res) => {
+        Amendment.find({}, (err, amendments) => {
+            if (err) {
+                console.error('error: ', err);
+                return;
+            }
+            res.send({'data': amendments});    
+        });
+    });
 
+    router.post('/deleteAmendment', isAuthenticated, (req, res) => {
+        var parent = req.body.parent;
+        var id = req.body.id;
+        var ret_data = null;
 
+        Amendment.findOneAndRemove({parent: parent}, (err, data) => {
+            ret_data = data;
+        });
 
+         Act.findOneAndUpdate({
+                _id: parent
+            },
+            {
+                $pull: {
+                    amendments: id
+                    }
+            }, (err, data) => {
+                console.log('deleted amend in act', ret_data);
+                res.status(200).json({
+                    data: ret_data
+                });
+            });
 
+        
+    });
+    
 
     return router;
 }

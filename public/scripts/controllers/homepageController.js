@@ -10,14 +10,14 @@ angular.module('myApp').controller('homepageController',
             
             $scope.status = AuthService.getUserStatus();            
 
-            $scope.setCurrentAct = function(heading) {                
-                ActService.currentAct = heading;
+            $scope.setCurrentAct = function(act) {
+                ActService.currentAct = act;
             }
 
             ActService.getAllActs()
             .then((data) => {
                 $scope.allActs = data;
-                console.log(data);
+                //console.log(data);
             });
 
             $scope.getCurrentUsername = function () {
