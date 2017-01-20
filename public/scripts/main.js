@@ -32,6 +32,10 @@ myApp.config(function ($routeProvider) {
             templateUrl: 'session.html',
             access: {restricted: true}
         })
+        .when('/act_session', {
+            templateUrl: 'act_session.html',
+            access: {restricted: true}
+        })
         .otherwise({
             redirectTo: '/'
         });

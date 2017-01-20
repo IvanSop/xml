@@ -13,6 +13,10 @@ angular.module('myApp').controller('actController',
                         self.allAmendments = ActService.getAllAmendmentsList();                        
                     })
                 
+                $scope.vote_yes = Math.floor(Math.random() * 50) + 1;
+                $scope.vote_no = Math.floor(Math.random() * 50) + 1;
+                $scope.vote_neutral = Math.floor(Math.random() * 10) + 1;
+                
 
             }
             self.init();
@@ -145,6 +149,35 @@ angular.module('myApp').controller('actController',
                             }
                         }
                     })
+            };
+
+            $scope.confirmRejection = function () { 
+                if (confirm('Da li ste sigurni da želite da odbacite predlog odluke?')) {
+                    self.rejectAct();
+                } else {
+                }
+            };
+
+            self.rejectAct = function() {
+                ActService.deleteAct(angular.toJson(ActService.currentAct))
+                    .then(function(response) {
+                        $location.path("/session");
+                    });
+            };
+
+            $scope.confirmAcceptance = function () { 
+                if (confirm('Da li ste sigurni da želite da usvojite predlog odluke?')) {
+                    self.acceptAct();
+                } else {
+                }
+            };
+
+            self.acceptAct = function() {
+                ActService.acceptAct(angular.toJson(ActService.currentAct))
+                    .then(function(response) {
+                        ActService.currentAct.status = 'accepted';
+                        $location.path("/session");
+                    });
             };
 
 }]);

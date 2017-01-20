@@ -1,3 +1,12 @@
 <div ng-include="'logout.html'"/>
 <a href="#/" class="btn btn-default">Početna</a>
-
+<br>
+<br>
+<div ng-controller="homepageController" class="session-widget">
+<h2>Akta u proceduri:</h2>
+<ul>
+    <li class="session-item" ng-repeat="act in allActs | filter: {status: 'inProgress'}">
+        <a href="#act_session" ng-click="setCurrentAct(act)">{{act.heading}}</a>
+    </li>
+</ul>
+</div>

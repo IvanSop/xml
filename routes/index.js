@@ -272,9 +272,17 @@ module.exports = function (passport) {
                 res.status(200).json({
                     data: ret_data
                 });
-            });
+            });        
+    });
 
+    router.post('/acceptAct', isAuthenticated, (req, res) => {        
+        var act = JSON.parse(req.body.data);
         
+        Act.findOneAndUpdate({_id: act._id}, {status: 'accepted'}, (err, data) => {
+            res.status(200).json({
+                            data: data
+            });
+        });
     });
     
 

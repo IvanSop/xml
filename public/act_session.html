@@ -1,0 +1,50 @@
+<div ng-include="'logout.html'"/>
+<a href="#/" class="btn btn-default">Početna</a>
+<a href="#/session" class="btn btn-primary">Sednica</a>
+<br>
+<br>
+
+<div ng-controller="actController as ac">
+    <label> Akt predložio: {{currentAct.author}}</label>
+    <br>
+    <label ng-if="currentAct.status == 'inProgress'"> Datum predlaganja: {{currentAct.date}}</label>
+    <label ng-if="currentAct.status == 'accepted'"> Datum usvajanja: {{currentAct.date}}</label>
+
+    <div style="background: white; padding: 10pt">
+        <h1 style="color: black; font-size: 30px">{{currentAct.heading}}</h1>
+        <div ng-repeat="node in currentAct.nodes track by $index">
+            <label style="display: inline-block; color: black; text-decoration: underline;">Tačka {{$index + 1}} </label><p style=" text-decoration: underline; font-size: 15pt; color: black; display: inline-block">{{node.heading}}</p>
+            <div name="clause" style="padding-left: 20pt" ng-repeat="clause in node.clauses">
+                <p style="text-decoration: underline; color: black; font-weight: 900">Član {{$index + 1}} </p>
+                <p style="color: black; font-weight: 200"name="clause-text">{{clause.text}}</p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div ng-if="currentAct.amendments.length != 0" name="amendments">
+        <h1>Amandmani:</h1>
+        <br>
+        <div style="border: 2px solid #555; margin-bottom: 2%;" ng-repeat="amendment in ac.allAmendments | filter: {parent: currentAct._id}">            
+            <p name="clause-text">{{amendment.text}}</p>            
+            <label>Amandman predložio: {{amendment.author}}</label>                        
+        </div>
+        <br>
+    </div>  
+
+    <button style="display: inline-block"class="btn btn-primary" ng-click="previewActAsXml(currentAct); ac.voting = !ac.voting;">Pokreni glasanje</button>
+    
+    </br>
+    </br>
+
+    <div class="act-widget" ng-if="ac.voting">
+        <h2>Rezultati glasanja:</h2>
+        <label>Za:</label><p>{{vote_yes}}</p>
+        <label>Protiv:</label><p>{{vote_no}}</p>
+        <label>Uzdržani:</label><p>{{vote_neutral}}</p>
+        <button style="display: inline-block"class="btn btn-success" ng-click="confirmAcceptance();">Usvojiti predlog</button>
+        <button style="display: inline-block"class="btn btn-danger" ng-click="confirmRejection();">Odbaciti predlog</button>
+    </div>
+</div>
+

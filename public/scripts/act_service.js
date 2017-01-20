@@ -12,7 +12,8 @@ angular.module('myApp').factory('ActService',
       submitAct: submitAct,
       deleteAct: deleteAct,
       submitAmendment: submitAmendment,
-      deleteAmendment: deleteAmendment
+      deleteAmendment: deleteAmendment,
+      acceptAct: acceptAct
     });
 
     function getAllActs() {        
@@ -90,6 +91,17 @@ angular.module('myApp').factory('ActService',
                 return response.data.data;
             }, function (response) {
                 console.log('error deleting act', response.data);
+            });
+        return promise;
+    }
+
+    function acceptAct(act) {
+        var promise = $http.post('/acceptAct', {data: act})
+            .then(function (response) {   
+                console.log('return in service:', response.data.data);
+                return response.data.data;
+            }, function (response) {
+                console.log('error accepting act', response.data.data);
             });
         return promise;
     }

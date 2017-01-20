@@ -43,9 +43,18 @@ a.search-btn, a.newact-btn {
 }
 
 div.acts-widget {
-    float: left;
+    float: left;    
     margin-right: 2%;
     width: 48%;
+    height: 50%;
+    border: 2px solid rgba(34, 55, 90, .5);
+}
+
+div.session-widget {
+    float: left;
+    padding: 2%;
+    margin-right: 2%;
+    width: 70%;
     height: 50%;
     border: 2px solid rgba(34, 55, 90, .5);
 }
@@ -78,6 +87,17 @@ label {
     font-size: 20pt;
     text-align: center;
     width: 50%;
+}
+
+.session-item {
+    cursor: pointer;
+    border: 2px, solid, #555;
+    background-color: white;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: 20pt;
+    text-align: center;
+    width: 80%;
 }
 
 li.myselected {
